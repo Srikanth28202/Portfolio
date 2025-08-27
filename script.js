@@ -2,15 +2,39 @@
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.setAttribute('aria-label', 'Toggle menu');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-controls', 'primary-navigation');
+    navMenu.setAttribute('id', 'primary-navigation');
+    navMenu.setAttribute('role', 'menu');
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && hamburger.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    if (hamburger && navMenu) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
 }));
 
 // Smooth scrolling for navigation links

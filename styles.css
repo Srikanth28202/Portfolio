@@ -69,6 +69,31 @@ body.page-enter-active {
     transform: none;
 }
 
+/* SPA slide stage and pages */
+.spa-stage {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.spa-page {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    will-change: transform, opacity;
+}
+
+.spa-page.enter-from-right { transform: translateX(100%); }
+.spa-page.enter-from-left { transform: translateX(-100%); }
+.spa-page.enter-active { transform: translateX(0); transition: transform 0.4s ease; }
+
+.spa-page.exit-to-left { transform: translateX(-100%); transition: transform 0.4s ease; }
+.spa-page.exit-to-right { transform: translateX(100%); transition: transform 0.4s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+    .spa-page { transition: none !important; transform: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .page-enter, .page-enter-active, .page-exit {
         opacity: 1;

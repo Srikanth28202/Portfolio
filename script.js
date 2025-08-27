@@ -237,25 +237,31 @@ document.head.appendChild(style);
 
 // Page transition for multi-page navigation
 const enablePageTransitions = () => {
-    // Add enter class on load
-    document.body.classList.add('page-enter');
+    // Ensure enter classes are present for initial load animation
+    if (!document.body.classList.contains('page-enter')) {
+        document.body.classList.add('page-enter');
+    }
     requestAnimationFrame(() => {
         document.body.classList.add('page-enter-active');
     });
 
-    // Intercept clicks on internal links
-    document.querySelectorAll('a.nav-link, a.link-card').forEach(link => {
+    // Intercept clicks on internal links (same-origin, not hashes, not files like pdf)
+    document.querySelectorAll('a[href]:not([target])').forEach(link => {
         const href = link.getAttribute('href');
-        if (href && !href.startsWith('http') && !href.startsWith('#') && !link.hasAttribute('target')) {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const url = link.getAttribute('href');
-                document.body.classList.add('page-exit');
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 250);
-            });
-        }
+        if (!href) return;
+        const isHash = href.startsWith('#');
+        const isPdf = href.toLowerCase().endsWith('.pdf');
+        const isExternal = href.startsWith('http') && !href.startsWith(window.location.origin);
+        if (isHash || isPdf || isExternal) return;
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = link.getAttribute('href');
+            document.body.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 250);
+        });
     });
 };
 

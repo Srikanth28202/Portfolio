@@ -63,6 +63,12 @@ h1, h2, h3, .section-title, .nav-logo span {
     transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
+/* Ensure starting state when JS adds classes slightly late */
+body.page-enter-active {
+    opacity: 1;
+    transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .page-enter, .page-enter-active, .page-exit {
         opacity: 1;

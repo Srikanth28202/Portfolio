@@ -240,13 +240,6 @@ style.textContent = `
     .nav-link.active::after {
         width: 100% !important;
     }
-    .loaded {
-        opacity: 1;
-    }
-    body {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
 `;
 document.head.appendChild(style);
 
@@ -278,7 +271,15 @@ function setupPageOverlayTransitions() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', setupPageOverlayTransitions);
+document.addEventListener('DOMContentLoaded', () => {
+    setupPageOverlayTransitions();
+    // Ensure overlay is reset on fresh load
+    const layer = document.querySelector('.page-transition-layer');
+    if (layer) {
+        layer.classList.remove('active-in');
+        layer.classList.remove('active-out');
+    }
+});
 
 // Theme toggle persistence
 document.addEventListener('DOMContentLoaded', () => {

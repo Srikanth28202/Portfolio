@@ -243,43 +243,8 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Simpler, robust slide using overlay + normal navigation
-function setupPageOverlayTransitions() {
-    let layer = document.querySelector('.page-transition-layer');
-    if (!layer) {
-        layer = document.createElement('div');
-        layer.className = 'page-transition-layer';
-        document.body.appendChild(layer);
-    }
-
-    document.querySelectorAll('a[href]:not([target])').forEach(link => {
-        const href = link.getAttribute('href');
-        if (!href) return;
-        const isHash = href.startsWith('#');
-        const isPdf = href.toLowerCase().endsWith('.pdf');
-        const isExternal = href.startsWith('http') && !href.startsWith(window.location.origin);
-        if (isHash || isPdf || isExternal) return;
-
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const url = link.getAttribute('href');
-            layer.classList.add('active-in');
-            setTimeout(() => {
-                window.location.href = url;
-            }, 200);
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    setupPageOverlayTransitions();
-    // Ensure overlay is reset on fresh load
-    const layer = document.querySelector('.page-transition-layer');
-    if (layer) {
-        layer.classList.remove('active-in');
-        layer.classList.remove('active-out');
-    }
-});
+// Remove overlay-based page transitions and restore default navigation
+// (No-op placeholder to keep file structure consistent)
 
 // Theme toggle persistence
 document.addEventListener('DOMContentLoaded', () => {

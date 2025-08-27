@@ -189,6 +189,38 @@ const validateEmail = (email) => {
     return re.test(email);
 };
 
+// Lightweight contact form handler: validates and opens mailto as fallback
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !message) {
+            status.textContent = 'Please fill in all fields.';
+            status.style.color = '#dc2626';
+            return;
+        }
+        if (!validateEmail(email)) {
+            status.textContent = 'Please enter a valid email address.';
+            status.style.color = '#dc2626';
+            return;
+        }
+
+        // Mailto fallback
+        const subject = encodeURIComponent('Portfolio contact from ' + name);
+        const body = encodeURIComponent(message + '\n\nReply to: ' + email);
+        window.location.href = `mailto:srikanth200428@gmail.com?subject=${subject}&body=${body}`;
+        status.textContent = 'Opening your email app...';
+        status.style.color = '#059669';
+    });
+});
+
 // Social links hover effects
 document.querySelectorAll('.social-btn').forEach(btn => {
     btn.addEventListener('mouseenter', function() {

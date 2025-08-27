@@ -235,6 +235,32 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Page transition for multi-page navigation
+const enablePageTransitions = () => {
+    // Add enter class on load
+    document.body.classList.add('page-enter');
+    requestAnimationFrame(() => {
+        document.body.classList.add('page-enter-active');
+    });
+
+    // Intercept clicks on internal links
+    document.querySelectorAll('a.nav-link, a.link-card').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('#') && !link.hasAttribute('target')) {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = link.getAttribute('href');
+                document.body.classList.add('page-exit');
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 250);
+            });
+        }
+    });
+};
+
+document.addEventListener('DOMContentLoaded', enablePageTransitions);
+
 // Theme toggle persistence
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');

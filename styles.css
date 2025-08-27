@@ -39,6 +39,38 @@ body.no-scroll {
     overflow: hidden;
 }
 
+/* Heading typography */
+h1, h2, h3, .section-title, .nav-logo span {
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    letter-spacing: 0.2px;
+}
+
+/* Page transition animations */
+.page-enter {
+    opacity: 0;
+    transform: translateX(24px);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.page-exit {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-enter, .page-enter-active, .page-exit {
+        opacity: 1;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;

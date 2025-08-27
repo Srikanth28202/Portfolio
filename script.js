@@ -1,41 +1,53 @@
 // Mobile Navigation Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+function setupNavigationControls() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    if (!hamburger || !navMenu) return;
 
-if (hamburger && navMenu) {
+    // Reset any previous state
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+
     hamburger.setAttribute('aria-label', 'Toggle menu');
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.setAttribute('aria-controls', 'primary-navigation');
     navMenu.setAttribute('id', 'primary-navigation');
     navMenu.setAttribute('role', 'menu');
 
-    hamburger.addEventListener('click', () => {
-        const isOpen = hamburger.classList.toggle('active');
+    // Remove previous listeners by cloning
+    const newHamburger = hamburger.cloneNode(true);
+    hamburger.parentNode.replaceChild(newHamburger, hamburger);
+
+    newHamburger.addEventListener('click', () => {
+        const isOpen = newHamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         document.body.classList.toggle('no-scroll', isOpen);
-        hamburger.setAttribute('aria-expanded', String(isOpen));
+        newHamburger.setAttribute('aria-expanded', String(isOpen));
     });
 
     // Close on ESC
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && hamburger.classList.contains('active')) {
-            hamburger.classList.remove('active');
+        if (e.key === 'Escape' && newHamburger.classList.contains('active')) {
+            newHamburger.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.classList.remove('no-scroll');
-            hamburger.setAttribute('aria-expanded', 'false');
+            newHamburger.setAttribute('aria-expanded', 'false');
         }
     });
+
+    // Close on nav link click
+    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+        newHamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        newHamburger.setAttribute('aria-expanded', 'false');
+    }));
 }
 
 // Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    if (hamburger && navMenu) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-        hamburger.setAttribute('aria-expanded', 'false');
-    }
-}));
+// Initial setup
+document.addEventListener('DOMContentLoaded', setupNavigationControls);
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -149,13 +161,16 @@ window.addEventListener('scroll', () => {
 });
 
 // Active navigation link highlighting for multi-page navigation
-const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === currentPage) {
-        link.classList.add('active');
-    }
-});
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
+setActiveNavLink();
 
 // Project cards hover effect
 document.querySelectorAll('.project-card').forEach(card => {
@@ -284,6 +299,9 @@ const spa = (() => {
                 stage.removeChild(current);
                 next.className = 'spa-page';
                 window.history.pushState({}, '', url);
+                // Re-run JS initializers for new content
+                setupNavigationControls();
+                setActiveNavLink();
                 rebindLinks();
             }, 400);
         } catch (e) {
@@ -314,6 +332,8 @@ const spa = (() => {
 
     document.addEventListener('DOMContentLoaded', () => {
         mountInitial();
+        setupNavigationControls();
+        setActiveNavLink();
         rebindLinks();
     });
 

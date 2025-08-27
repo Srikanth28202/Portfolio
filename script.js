@@ -250,95 +250,35 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// SPA-style page loader with slide transitions
-const spa = (() => {
-    const stage = document.createElement('div');
-    stage.className = 'spa-stage';
+// Simpler, robust slide using overlay + normal navigation
+function setupPageOverlayTransitions() {
+    let layer = document.querySelector('.page-transition-layer');
+    if (!layer) {
+        layer = document.createElement('div');
+        layer.className = 'page-transition-layer';
+        document.body.appendChild(layer);
+    }
 
-    const fetchPage = async (url) => {
-        const res = await fetch(url, { credentials: 'same-origin' });
-        const html = await res.text();
-        const doc = new DOMParser().parseFromString(html, 'text/html');
-        // Remove script tags to avoid double-loading scripts
-        doc.querySelectorAll('script').forEach(s => s.remove());
-        return doc.body.innerHTML;
-    };
+    document.querySelectorAll('a[href]:not([target])').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const isHash = href.startsWith('#');
+        const isPdf = href.toLowerCase().endsWith('.pdf');
+        const isExternal = href.startsWith('http') && !href.startsWith(window.location.origin);
+        if (isHash || isPdf || isExternal) return;
 
-    const mountInitial = () => {
-        const current = document.createElement('div');
-        current.className = 'spa-page';
-        // Move current body children into page container
-        while (document.body.firstChild) {
-            const node = document.body.firstChild;
-            if (node === stage) break;
-            current.appendChild(node);
-        }
-        document.body.appendChild(stage);
-        stage.appendChild(current);
-    };
-
-    const navigate = async (url, direction = 'left') => {
-        try {
-            const nextHtml = await fetchPage(url);
-            const current = stage.querySelector('.spa-page');
-            const next = document.createElement('div');
-            next.className = 'spa-page ' + (direction === 'left' ? 'enter-from-right' : 'enter-from-left');
-            next.innerHTML = nextHtml;
-            stage.appendChild(next);
-
-            // Start exit animation for current
-            current.classList.add(direction === 'left' ? 'exit-to-left' : 'exit-to-right');
-
-            // Trigger enter animation
-            requestAnimationFrame(() => {
-                next.classList.add('enter-active');
-            });
-
-            // After animation, swap URL and cleanup
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = link.getAttribute('href');
+            layer.classList.add('active-in');
             setTimeout(() => {
-                stage.removeChild(current);
-                next.className = 'spa-page';
-                window.history.pushState({}, '', url);
-                // Re-run JS initializers for new content
-                setupNavigationControls();
-                setActiveNavLink();
-                rebindLinks();
-            }, 400);
-        } catch (e) {
-            window.location.href = url; // fallback
-        }
-    };
-
-    const rebindLinks = () => {
-        document.querySelectorAll('a[href]:not([target])').forEach(link => {
-            const href = link.getAttribute('href');
-            if (!href) return;
-            const isHash = href.startsWith('#');
-            const isPdf = href.toLowerCase().endsWith('.pdf');
-            const isExternal = href.startsWith('http') && !href.startsWith(window.location.origin);
-            if (isHash || isPdf || isExternal) return;
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const url = link.getAttribute('href');
-                const dir = window.location.pathname.localeCompare(url) <= 0 ? 'left' : 'right';
-                navigate(url, dir);
-            });
+                window.location.href = url;
+            }, 200);
         });
-    };
-
-    window.addEventListener('popstate', () => {
-        navigate(window.location.pathname, 'right');
     });
+}
 
-    document.addEventListener('DOMContentLoaded', () => {
-        mountInitial();
-        setupNavigationControls();
-        setActiveNavLink();
-        rebindLinks();
-    });
-
-    return { navigate };
-})();
+document.addEventListener('DOMContentLoaded', setupPageOverlayTransitions);
 
 // Theme toggle persistence
 document.addEventListener('DOMContentLoaded', () => {

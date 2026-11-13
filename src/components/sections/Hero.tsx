@@ -8,7 +8,6 @@ import {
   type Variants,
 } from "framer-motion";
 import { Fragment } from "react";
-import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Download, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import HeroOrb from "@/components/visuals/HeroOrb";
@@ -202,18 +201,7 @@ export default function Hero() {
           style={{ x: orbX, y: orbY }}
           className="lg:col-span-5"
         >
-          <div className="relative aspect-square w-full max-w-[34rem] overflow-hidden rounded-full">
-            <Image
-              src="/SRI.jpeg"
-              alt="Sri Kanth V"
-              fill
-              priority
-              className="object-cover"
-            />
-            <motion.div style={{ x: orbX, y: orbY }} className="absolute inset-0">
-              <HeroOrb />
-            </motion.div>
-          </div>
+          <HeroOrb />
         </motion.div>
       </div>
 

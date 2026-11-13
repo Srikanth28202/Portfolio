@@ -67,64 +67,6 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-export type Project = {
-  id: string;
-  index: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  tags: string[];
-  visual: "agri" | "translate" | "weather" | "ev";
-  accent: string;
-};
-
-export const projects: Project[] = [
-  {
-    id: "agrisarathi",
-    index: "01",
-    title: "AgriSarathi",
-    subtitle: "AI Crop Recommendation",
-    description:
-      "A recommendation system that reads soil and climate signals to suggest crops farmers can actually act on. Built around a model-first pipeline that turns agricultural data into a clear, usable recommendation.",
-    tags: ["Machine Learning", "Recommendation", "Agriculture"],
-    visual: "agri",
-    accent: "#34D399",
-  },
-  {
-    id: "translator",
-    index: "02",
-    title: "Neural Translator",
-    subtitle: "Automated Multilingual Translation",
-    description:
-      "A multilingual translation workflow designed to preserve meaning across languages, with an evaluation-focused approach to handling real-world text beyond clean benchmarks.",
-    tags: ["NLP", "Neural Networks", "Python"],
-    visual: "translate",
-    accent: "#38BDF8",
-  },
-  {
-    id: "weather",
-    index: "03",
-    title: "Weather Patterns",
-    subtitle: "Time-Series Forecasting with SARIMA",
-    description:
-      "Seasonal ARIMA modelling applied to historical weather data to separate trend, seasonality and noise — surfacing patterns that support better forecasting decisions.",
-    tags: ["SARIMA", "Time Series", "Analytics"],
-    visual: "weather",
-    accent: "#287BFF",
-  },
-  {
-    id: "ev-charging",
-    index: "04",
-    title: "Dynamic EV Charging",
-    subtitle: "Smart Wireless Charging Robotic Vehicle",
-    description:
-      "A robotics and power-electronics build exploring dynamic wireless charging for electric vehicles — combining embedded control with energy-aware system design.",
-    tags: ["Robotics", "Embedded", "Energy Systems"],
-    visual: "ev",
-    accent: "#8B5CF6",
-  },
-];
-
 export type ExperienceItem = {
   org: string;
   role: string;
@@ -136,34 +78,119 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   {
     org: "Artsy Technologies",
-    role: "Software Development",
+    role: "AI/ML Developer and Intern Trainer",
     kind: "Industry",
     description:
-      "Part of a professional product team, contributing to full stack development and translating requirements into shipped, maintainable features.",
-    focus: ["Product engineering", "Full stack delivery"],
+      "Part of a professional product team, contributing to full stack development and translating requirements into shipped, maintainable features. Delivered technical training to interns on AI/ML fundamentals and model deployment.",
+    focus: ["Product engineering", "Full stack delivery", "Mentoring"],
   },
   {
     org: "Cisco × AICTE",
-    role: "Virtual Internship",
+    role: "Cybersecurity Intern",
     kind: "Internship",
     description:
-      "Selected for the Cisco and AICTE virtual internship program, working through networking fundamentals, structured troubleshooting and applied technical problem solving.",
-    focus: ["Networking", "Problem solving"],
+      "Selected for the Cisco and AICTE virtual internship program, working through networking fundamentals, structured troubleshooting and applied technical problem solving. Focused on cybersecurity fundamentals and secure application development.",
+    focus: ["Networking", "Problem solving", "Cybersecurity"],
   },
   {
-    org: "Independent Practice",
-    role: "Freelance Development",
+    org: "Tattvasphere Technologies LLP",
+    role: "Freelance Software Developer",
     kind: "Freelance",
     description:
-      "Partner with clients to design and build responsive web applications — from interface decisions through implementation and deployment.",
-    focus: ["Web applications", "Client delivery"],
+      "Partnered with clients to design and build responsive web applications — from interface decisions through implementation and deployment. Delivered multiple client projects using Next.js and FastAPI.",
+    focus: ["Web applications", "Client delivery", "Independent projects"],
   },
   {
-    org: "Technical Training",
+    org: "Technical Trainer",
     role: "Trainer & Mentor",
-    kind: "Teaching",
+    kind: "Trainer & Mentor",
     description:
-      "Deliver hands-on technical sessions across programming, data and AI fundamentals, breaking complex ideas into practical, project-based learning.",
-    focus: ["Curriculum design", "Hands-on mentoring"],
+      "Delivered hands-on technical sessions across programming, data and AI fundamentals, breaking complex ideas into practical, project-based learning. Mentored students and interns on building end-to-end intelligent systems.",
+    focus: ["Curriculum design", "Hands-on mentoring", "Student mentoring"],
+  },
+];
+
+export type Achievement = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
+export const achievements: Achievement[] = [
+  {
+    title: "1st Place",
+    subtitle: "National Level Hackathon 2026",
+    description: "Won first place at a national-level hackathon with a team of four, building an AI-powered crop recommendation system.",
+  },
+  {
+    title: "IEEE Student Member",
+    subtitle: "Institute of Electrical and Electronics Engineers",
+    description: "Active IEEE student member since 2022, participating in technical workshops and conferences.",
+  },
+  {
+    title: "Cisco Python Programming Certification",
+    subtitle: "Cisco Career Essentials",
+    description: "Completed Cisco's Python programming certification for network automation and tool development.",
+  },
+  {
+    title: "Class Representative",
+    subtitle: "Batch Coordinator",
+    description: "Served as class representative and cultural coordinator, organizing student events and technical meetups.",
+  },
+  {
+    title: "Industry-Guided Project",
+    subtitle: "FAER Company",
+    description: "Academic project guided by FAER Company, deploying a full-stack AI solution for predictive maintenance.",
+  },
+];
+
+export type EducationItem = {
+  degree: string;
+  university: string;
+  cgpa: string;
+  duration: string;
+};
+
+export const education: EducationItem = {
+  degree: "B.E. Artificial Intelligence and Machine Learning",
+  university: "Visvesvaraya Technological University",
+  cgpa: "8.66/10",
+  duration: "2018 – 2022",
+};
+
+// Phase 2: Technical Skill Categories
+export type SkillCategory = {
+  title: string;
+  skills: string[];
+};
+
+export const skillCategories: SkillCategory[] = [
+  {
+    title: "Programming",
+    skills: ["Python", "Java", "C++"],
+  },
+  {
+    title: "AI/ML",
+    skills: ["Machine Learning", "Image Processing", "AI Application Development"],
+  },
+  {
+    title: "Data Analytics",
+    skills: ["SQL", "Excel", "Power BI", "Statistics", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
+  },
+  {
+    title: "Frontend",
+    skills: ["HTML", "CSS", "React.js", "Next.js"],
+  },
+  {
+    title: "Backend",
+    skills: ["FastAPI", "REST APIs", "JWT"],
+  },
+  {
+    title: "Database",
+    skills: ["MongoDB", "SQL Server"],
+  },
+  {
+    title: "Tools",
+    skills: ["Git", "GitHub"],
   },
 ];

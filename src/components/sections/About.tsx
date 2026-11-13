@@ -4,7 +4,6 @@ import {
   BrainCircuit,
   ChartNoAxesCombined,
   Layers,
-  Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -36,6 +35,12 @@ const pipeline = [
   { step: "03", label: "Product", detail: "Interface people use" },
 ];
 
+const education = {
+  degree: "B.E. Artificial Intelligence and Machine Learning",
+  university: "Visvesvaraya Technological University",
+  cgpa: "8.66/10",
+};
+
 export default function About() {
   return (
     <section
@@ -51,6 +56,7 @@ export default function About() {
             headingId="about-heading"
             title={
               <>
+
                 Engineering clarity out of{" "}
                 <span className="serif-accent">complexity.</span>
               </>
@@ -74,7 +80,6 @@ export default function About() {
                 <div className="relative">
                   <div className="flex items-center justify-between">
                     <span className="eyebrow">Approach</span>
-                    <Sparkles className="size-4 text-accent-soft/70" />
                   </div>
 
                   <p className="mt-6 font-display text-[1.6rem] leading-[1.15] font-medium tracking-[-0.03em] text-balance">
@@ -161,24 +166,53 @@ export default function About() {
                   </article>
                 </Reveal>
               ))}
+
+              <Reveal delay={0.2}>
+                <div className="mt-9 flex flex-wrap items-center gap-2">
+                  <span className="mr-1 text-[10px] font-semibold tracking-[0.22em] text-dim uppercase">
+                    Focus
+                  </span>
+                  {[
+                    "Machine Learning",
+                    "Business Analytics",
+                    "Data Visualization",
+                    "Full Stack",
+                    "Technical Training",
+                  ].map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
             </div>
 
-            <Reveal delay={0.2}>
-              <div className="mt-9 flex flex-wrap items-center gap-2">
-                <span className="mr-1 text-[10px] font-semibold tracking-[0.22em] text-dim uppercase">
-                  Focus
-                </span>
-                {[
-                  "Machine Learning",
-                  "Business Analytics",
-                  "Data Visualization",
-                  "Full Stack",
-                  "Technical Training",
-                ].map((tag) => (
-                  <span key={tag} className="chip">
-                    {tag}
-                  </span>
-                ))}
+            <Reveal delay={0.15}>
+              <div className="mt-6 glass rounded-2xl p-6 sm:p-8 lg:p-10">
+                <div className="flex items-start gap-4">
+                  <div className="size-14 rounded-full bg-accent shadow-[0_0_10px_2px_rgba(40,123,255,0.5)] flex items-center justify-center flex-shrink-0">
+                    <BrainCircuit className="size-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="mt-1 font-display text-[1.8rem] font-medium tracking-[-0.03em] text-balance">
+                      {education.degree}
+                    </h3>
+                    <p className="mt-2 text-[13px] text-muted">
+                      {education.university}
+                    </p>
+                    <p className="mt-1 text-[12px] font-medium text-accent-soft">
+                      CGPA: {education.cgpa}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-[13px] leading-relaxed text-muted">
+                  Passionate about intelligent applications and data-driven solutions.
+                  I combine machine learning expertise with full stack development
+                  to build products that are clear, useful and genuinely intelligent.
+                  Alongside building, I train and mentor students on AI/ML fundamentals,
+                  helping them break complex ideas into practical, project-based
+                  learning experiences.
+                </p>
               </div>
             </Reveal>
           </div>

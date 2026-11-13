@@ -22,6 +22,7 @@ export default function Experience() {
                 headingId="experience-heading"
                 title={
                   <>
+
                     Learning by{" "}
                     <span className="serif-accent">shipping.</span>
                   </>

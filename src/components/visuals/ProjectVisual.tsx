@@ -1,6 +1,6 @@
 import { Zap } from "lucide-react";
 import type { CSSProperties } from "react";
-import type { Project } from "@/lib/content";
+import type { Project } from "@/data/projects";
 
 function Agri({ accent }: { accent: string }) {
   return (
@@ -149,14 +149,8 @@ function EvCharging({ accent }: { accent: string }) {
           className="absolute inset-0 rounded-full border"
           style={{ borderColor: `${accent}33` }}
         />
-        <div
-          className="spin-slow absolute inset-1.5 rounded-full border border-dashed"
-          style={{ borderColor: `${accent}66` }}
-        />
-        <div
-          className="spin-mid absolute inset-6 rounded-full border"
-          style={{ borderColor: `${accent}40` }}
-        />
+        <div className="spin-slow absolute inset-1.5 rounded-full border border-dashed" style={{ borderColor: `${accent}66` }} />
+        <div className="spin-mid absolute inset-6 rounded-full border border-dashed" style={{ borderColor: `${accent}40` }} />
         <div
           className="absolute inset-12 rounded-full border"
           style={{ borderColor: `${accent}55` }}
@@ -200,19 +194,59 @@ function EvCharging({ accent }: { accent: string }) {
   );
 }
 
+function Fraud({ accent }: { accent: string }) {
+  return (
+    <div className="relative flex h-full items-center justify-center">
+      <svg viewBox="0 0 320 180" className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="fraud-shield" x1="0" y1="0" x2="0" y2="1">
+            <stop stopColor={accent} stopOpacity="0.35" />
+            <stop offset="1" stopColor={accent} stopOpacity="0.04" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M160 28 252 50v46c0 50-33 82-92 102-59-20-92-52-92-102V50l92-22Z"
+          fill="url(#fraud-shield)"
+          stroke={accent}
+          strokeOpacity="0.55"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M128 106l22 22 44-50"
+          stroke={accent}
+          strokeWidth="7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <g stroke={accent} strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="3 6">
+          <circle cx="160" cy="90" r="52" fill="none" />
+          <circle cx="160" cy="90" r="26" fill="none" strokeDasharray="2 5" />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 const visuals = {
   agri: Agri,
   translate: Translate,
   weather: Weather,
   ev: EvCharging,
+  fraud: Fraud,
 };
 
-export default function ProjectVisual({ project }: { project: Project }) {
+export default function ProjectVisual({
+  project,
+  className = "absolute inset-0",
+}: {
+  project: Project;
+  className?: string;
+}) {
   const Visual = visuals[project.visual];
 
   return (
     <div
-      className="relative h-full w-full overflow-hidden"
+      className={className}
       style={
         {
           "--pa": project.accent,

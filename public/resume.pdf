@@ -9,7 +9,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
 endobj
 4 0 obj
-<< /Length 4808 >>
+<< /Length 6288 >>
 stream
 BT /F2 25 Tf 0.08 0.09 0.12 rg 0.5 Tc 56 738 Td (SRI KANTH V) Tj ET
 0.157 0.482 1 rg 56 722 96 3 re f
@@ -23,36 +23,47 @@ BT /F1 9.5 Tf 0.38 0.41 0.46 rg 0 Tc 56 615 Td (pipelines, business analytics an
 BT /F1 9.5 Tf 0.38 0.41 0.46 rg 0 Tc 56 601.5 Td (on the same tools, which keeps the fundamentals sharp.) Tj ET
 BT /F2 8.2 Tf 0.08 0.09 0.12 rg 1.1 Tc 56 582 Td (TECHNICAL SKILLS) Tj ET
 0.85 0.87 0.9 RG 0.7 w 56 576 m 556 576 l S
-BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 562 Td (Languages & Core: Python, Java, C++, SQL) Tj ET
-BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 549.4 Td (Data & Analytics: Excel, Power BI, Pandas, NumPy, SQL Server) Tj ET
-BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 536.8 Td (AI & Backend: Machine Learning, FastAPI) Tj ET
-BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 524.1999999999999 Td (Frontend & Tooling: React.js, Next.js, MongoDB, Git) Tj ET
-BT /F2 8.2 Tf 0.08 0.09 0.12 rg 1.1 Tc 56 503.5999999999999 Td (SELECTED PROJECTS) Tj ET
-0.85 0.87 0.9 RG 0.7 w 56 497.5999999999999 m 556 497.5999999999999 l S
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 483.5999999999999 Td (AgriSarathi — AI Crop Recommendation) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 471.5999999999999 Td (Recommendation system that reads soil and climate signals and turns them into practical crop) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 459.19999999999993 Td (suggestions.) Tj ET
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 442.79999999999995 Td (Automated Multilingual Neural Translator) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 430.79999999999995 Td (Neural translation workflow built to preserve meaning across languages when working with) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 418.4 Td (real-world text.) Tj ET
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 402 Td (Weather Pattern Prediction using SARIMA) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 390 Td (Seasonal ARIMA time-series modelling that separates trend, seasonality and noise in historical) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 377.6 Td (weather data.) Tj ET
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 361.20000000000005 Td (Smart Dynamic Wireless EV Charging Robotic Vehicle) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 349.20000000000005 Td (Robotics and power-electronics build exploring dynamic wireless charging for electric vehicles.) Tj ET
-BT /F2 8.2 Tf 0.08 0.09 0.12 rg 1.1 Tc 56 328.80000000000007 Td (EXPERIENCE) Tj ET
-0.85 0.87 0.9 RG 0.7 w 56 322.80000000000007 m 556 322.80000000000007 l S
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 308.80000000000007 Td (Artsy Technologies — Software Development) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 296.80000000000007 Td (Full stack product development within a professional engineering team, translating requirements) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 284.4000000000001 Td (into shipped, maintainable features.) Tj ET
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 268.0000000000001 Td (Cisco × AICTE — Virtual Internship) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 256.0000000000001 Td (Networking fundamentals, structured troubleshooting and applied technical problem solving.) Tj ET
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 239.6000000000001 Td (Freelance Development) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 227.6000000000001 Td (Design and delivery of responsive web applications for independent clients, from interface) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 215.2000000000001 Td (through deployment.) Tj ET
-BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 198.8000000000001 Td (Technical Training) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 186.8000000000001 Td (Hands-on instruction across programming, data and AI fundamentals, built around practical,) Tj ET
-BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 174.4000000000001 Td (project-based learning.) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 562 Td (Programming: Python, Java, C++, SQL) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 549.4 Td (Data Analytics: Excel, Power BI, EDA, Statistics, Data Cleaning, Business Analysis) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 536.8 Td (AI / ML: Machine Learning, Predictive Modelling, Time Series Forecasting, OpenCV) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 524.1999999999999 Td (Libraries: Pandas, NumPy, Scikit-learn, Statsmodels) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 511.5999999999999 Td (Web: HTML, CSS, React.js, Next.js, FastAPI) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 498.9999999999999 Td (Database: SQL Server, MongoDB) Tj ET
+BT /F1 9.3 Tf 0.38 0.41 0.46 rg 0 Tc 56 486.39999999999986 Td (Tools: Git, GitHub, Jupyter Notebook, VS Code) Tj ET
+BT /F2 8.2 Tf 0.08 0.09 0.12 rg 1.1 Tc 56 465.79999999999984 Td (SELECTED PROJECTS) Tj ET
+0.85 0.87 0.9 RG 0.7 w 56 459.79999999999984 m 556 459.79999999999984 l S
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 445.79999999999984 Td (KECCTA.in — Freelance Website Development) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 433.79999999999984 Td (Freelance website development using Next.js, React.js, JavaScript, HTML, CSS and technical SEO.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 417.39999999999986 Td (Nagaraseva.com — Municipal Digital Solutions) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 405.39999999999986 Td (Municipal digital solutions for Doddaballapura, including citizen services, waste tracking and) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 392.9999999999999 Td (service request workflows.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 376.5999999999999 Td (ScanSkip — Academic and Career Assistance) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 364.5999999999999 Td (Ongoing academic and career assistance platform involving backend workflows, authentication,) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 352.19999999999993 Td (resource management and structured data storage.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 335.79999999999995 Td (Smart Greenhouse System — AI + IoT) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 323.79999999999995 Td (Smart irrigation, IoT sensor integration, automated environmental control and image processing) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 311.4 Td (for plant disease detection.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 295 Td (Multilingual Voice Agent) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 283 Td (Python-based application integrating speech-to-text, translation and text-to-speech for) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 270.6 Td (multilingual voice interaction.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 254.20000000000005 Td (Weather Pattern Prediction using SARIMA) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 242.20000000000005 Td (Time-series forecasting using SARIMA, historical weather data and seasonal trend analysis.) Tj ET
+BT /F2 8.2 Tf 0.08 0.09 0.12 rg 1.1 Tc 56 221.80000000000004 Td (EXPERIENCE) Tj ET
+0.85 0.87 0.9 RG 0.7 w 56 215.80000000000004 m 556 215.80000000000004 l S
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 201.80000000000004 Td (Artsy Technologies — AI/ML Intern) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 189.80000000000004 Td (Worked on Python-based AI/ML projects, contributing to model development, data handling and) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 177.40000000000003 Td (implementation. Guided and mentored student interns in technical concepts and project) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 165.00000000000003 Td (implementation.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 148.60000000000002 Td (Cisco AICTE — Cybersecurity Intern) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 136.60000000000002 Td (Virtual internship focused on cybersecurity fundamentals, threat analysis and security) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 124.20000000000002 Td (practices.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 107.80000000000001 Td (Tattvasphere Technologies LLP — Freelance Software Developer) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 95.80000000000001 Td (Website development and improvements for KECCTA.in and Nagaraseva.com, including Next.js) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 83.4 Td (development, sitemap and canonical URL configuration, and technical SEO and Google Search) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 71 Td (indexing improvements.) Tj ET
+BT /F2 9.6 Tf 0.08 0.09 0.12 rg 0 Tc 56 54.6 Td (Anudip Foundation — Data and Business Analytics Using AI) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 42.6 Td (Currently undergoing training in data cleaning, analysis, visualization, KPI tracking, business) Tj ET
+BT /F1 9.1 Tf 0.38 0.41 0.46 rg 0 Tc 56 30.200000000000003 Td (insights and AI-assisted analytics.) Tj ET
 0.85 0.87 0.9 RG 0.6 w 56 70 m 556 70 l S
 BT /F1 7.6 Tf 0.38 0.41 0.46 rg 0 Tc 56 56 Td (Detailed project walkthroughs and references available on request.) Tj ET
 BT /F2 7.6 Tf 0.38 0.41 0.46 rg 0 Tc 514 56 Td (Sri Kanth V) Tj ET
@@ -71,10 +82,10 @@ xref
 0000000058 00000 n 
 0000000115 00000 n 
 0000000251 00000 n 
-0000005111 00000 n 
-0000005208 00000 n 
+0000006591 00000 n 
+0000006688 00000 n 
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-5310
+6790
 %%EOF

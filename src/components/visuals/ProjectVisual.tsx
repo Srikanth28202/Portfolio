@@ -227,12 +227,30 @@ function Fraud({ accent }: { accent: string }) {
   );
 }
 
+function Web({ accent }: { accent: string }) {
+  return (
+    <div className="relative flex h-full items-center justify-center">
+      <svg viewBox="0 0 320 180" className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
+        <rect x="20" y="16" width="280" height="148" rx="10" stroke="rgba(255,255,255,0.16)" strokeWidth="1" fill="rgba(255,255,255,0.03)" />
+        <circle cx="38" cy="28" r="3" fill="#F87171" />
+        <circle cx="52" cy="28" r="3" fill="#FBBF24" />
+        <circle cx="66" cy="28" r="3" fill="#34D399" />
+        <rect x="44" y="52" width="120" height="6" rx="3" fill={accent} fillOpacity="0.5" />
+        <rect x="44" y="66" width="180" height="5" rx="2.5" fill="rgba(255,255,255,0.16)" />
+        <rect x="44" y="77" width="150" height="5" rx="2.5" fill="rgba(255,255,255,0.12)" />
+        <rect x="44" y="88" width="90" height="5" rx="2.5" fill="rgba(255,255,255,0.12)" />
+      </svg>
+    </div>
+  );
+}
+
 const visuals = {
   agri: Agri,
   translate: Translate,
   weather: Weather,
   ev: EvCharging,
   fraud: Fraud,
+  web: Web,
 };
 
 export default function ProjectVisual({

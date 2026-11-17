@@ -24,17 +24,17 @@ function SkillCategoryCard({
     case "Data Analytics":
       Icon = BarChart3;
       break;
-    case "Frontend":
+    case "Visualization":
       Icon = Layers;
       break;
-    case "Backend":
-      Icon = Code2;
+    case "Libraries":
+      Icon = Database;
+      break;
+    case "Web":
+      Icon = Layers;
       break;
     case "Database":
       Icon = Database;
-      break;
-    case "Tools":
-      Icon = Code2;
       break;
     default:
       Icon = Code2;

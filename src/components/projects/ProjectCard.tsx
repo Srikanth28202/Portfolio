@@ -105,22 +105,42 @@ export default function ProjectCard({ project, index, onOpen }: ProjectCardProps
 
       {/* Action buttons */}
       <div className="flex flex-col gap-3 p-5 pt-0 sm:flex-row">
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
-        >
-          GitHub
-        </a>
-        <a
-          href={project.liveDemo}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
-        >
-          Live Demo
-        </a>
+        {project.github ? (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
+          >
+            GitHub
+          </a>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-[12px] font-medium text-muted opacity-60"
+          >
+            Coming Soon
+          </button>
+        )}
+        {project.liveDemo ? (
+          <a
+            href={project.liveDemo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
+          >
+            Live Demo
+          </a>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="flex-1 rounded-xl border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-[12px] font-medium text-muted opacity-60"
+          >
+            Coming Soon
+          </button>
+        )}
       </div>
     </motion.div>
   );

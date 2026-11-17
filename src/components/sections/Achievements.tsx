@@ -1,26 +1,28 @@
 "use client";
 
-import { Trophy, User, Link2, GraduationCap } from "lucide-react";
+import { Briefcase, BrainCircuit, GraduationCap, User } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { achievements } from "@/lib/content";
+import { certifications, leadership, type Achievement } from "@/lib/content";
 
 function AchievementCard({
   achievement,
   index,
 }: {
-  achievement: (typeof achievements)[number];
+  achievement: Achievement;
   index: number;
 }) {
   const icons = {
-    "1st Place": Trophy,
-    "IEEE Student Member": User,
-    "Cisco Python Programming Certification": Link2,
     "Class Representative": User,
-    "Industry-Guided Project": GraduationCap,
+    "Department Placement Coordinator": Briefcase,
+    "Technical Trainer and Intern Mentor": GraduationCap,
+    "Machine Learning": BrainCircuit,
+    "Introduction to Deep Learning": BrainCircuit,
   };
 
-  const Icon = icons[achievement.title as keyof typeof icons];
+  const Icon = icons[
+    achievement.title as keyof typeof icons
+  ];
 
   return (
     <article
@@ -42,9 +44,11 @@ function AchievementCard({
       <h3 className="mt-4 font-display text-[14px] font-semibold tracking-tight text-foreground">
         {achievement.title}
       </h3>
-      <p className="mt-1 text-[12px] leading-relaxed text-muted">
-        {achievement.subtitle}
-      </p>
+      {achievement.subtitle ? (
+        <p className="mt-1 text-[12px] leading-relaxed text-muted">
+          {achievement.subtitle}
+        </p>
+      ) : null}
       <p className="mt-3 text-[12.5px] leading-relaxed text-muted">
         {achievement.description}
       </p>
@@ -53,6 +57,8 @@ function AchievementCard({
 }
 
 export default function Achievements() {
+  const items: Achievement[] = [...leadership, ...certifications];
+
   return (
     <section
       id="achievements"
@@ -67,7 +73,6 @@ export default function Achievements() {
             headingId="achievements-heading"
             title={
               <>
-
                 Proud moments and recognitions.
               </>
             }
@@ -75,7 +80,7 @@ export default function Achievements() {
         </Reveal>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {achievements.map((achievement, index) => (
+          {items.map((achievement, index) => (
             <Reveal key={achievement.title} delay={index * 0.08}>
               <AchievementCard achievement={achievement} index={index} />
             </Reveal>

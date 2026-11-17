@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 import CopyEmail from "@/components/ui/CopyEmail";
 import Reveal from "@/components/ui/Reveal";
@@ -26,6 +26,13 @@ const channels = [
     value: site.email,
     href: `mailto:${site.email}`,
     icon: Mail,
+    external: false,
+  },
+  {
+    label: "Phone",
+    value: site.phone,
+    href: `tel:${site.phone}`,
+    icon: Phone,
     external: false,
   },
 ];

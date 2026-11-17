@@ -78,7 +78,7 @@ export default function Navbar() {
               Sri Kanth V
             </span>
             <span className="block text-[9px] font-medium tracking-[0.22em] text-dim uppercase">
-              AI / ML Â· Full Stack
+              AI / ML · Full Stack
             </span>
           </span>
           <span className="sr-only">Back to top</span>

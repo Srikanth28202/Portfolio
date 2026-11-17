@@ -108,9 +108,7 @@ export default function Projects() {
               animate="show"
               className="mt-3 max-w-xs text-[13.5px] leading-relaxed text-muted lg:text-right"
             >
-              Five intelligent builds spanning recommendation systems, language
-              technology, time-series forecasting, embedded systems and AI-powered
-              detection.
+              Six intelligent builds spanning web platforms, municipal systems, AI + IoT, language technology and forecasting.
             </motion.p>
           </div>
 

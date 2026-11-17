@@ -25,7 +25,8 @@ const instrument = Instrument_Serif({
   display: "swap",
 });
 
-const title = "Sri Kanth V — AI/ML Engineer & Full Stack Developer";
+const title =
+  "Sri Kanth V — Artificial Intelligence & Machine Learning Engineer | Data Analytics | Full Stack Developer";
 const description =
   "Sri Kanth V builds intelligent experiences through code — spanning machine learning, data and business analytics, full stack development and technical training.";
 
@@ -83,7 +84,7 @@ const personSchema = {
   "@type": "Person",
   name: site.name,
   jobTitle:
-    "AI/ML Engineer, Data & Business Analytics, Full Stack Developer & Technical Trainer",
+    "Artificial Intelligence & Machine Learning Engineer | Data Analytics | Full Stack Developer & Technical Trainer",
   email: `mailto:${site.email}`,
   url: site.url,
   sameAs: [site.github.href, site.linkedin.href],

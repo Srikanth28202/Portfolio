@@ -114,13 +114,32 @@ paragraph(
 
 section("Technical Skills", cursor - 6);
 paragraph(
-  "Languages & Core: Python, Java, C++, SQL",
+  "Programming: Python, Java, C++, SQL",
   9.3,
   12.6,
 );
-paragraph("Data & Analytics: Excel, Power BI, Pandas, NumPy, SQL Server", 9.3, 12.6);
-paragraph("AI & Backend: Machine Learning, FastAPI", 9.3, 12.6);
-paragraph("Frontend & Tooling: React.js, Next.js, MongoDB, Git", 9.3, 12.6);
+paragraph(
+  "Data Analytics: Excel, Power BI, EDA, Statistics, Data Cleaning, Business Analysis",
+  9.3,
+  12.6,
+);
+paragraph(
+  "AI / ML: Machine Learning, Predictive Modelling, Time Series Forecasting, OpenCV",
+  9.3,
+  12.6,
+);
+paragraph(
+  "Libraries: Pandas, NumPy, Scikit-learn, Statsmodels",
+  9.3,
+  12.6,
+);
+paragraph(
+  "Web: HTML, CSS, React.js, Next.js, FastAPI",
+  9.3,
+  12.6,
+);
+paragraph("Database: SQL Server, MongoDB", 9.3, 12.6);
+paragraph("Tools: Git, GitHub, Jupyter Notebook, VS Code", 9.3, 12.6);
 
 /* ---------- Projects ---------- */
 
@@ -128,20 +147,28 @@ section("Selected Projects", cursor - 8);
 
 const projects = [
   [
-    "AgriSarathi — AI Crop Recommendation",
-    "Recommendation system that reads soil and climate signals and turns them into practical crop suggestions.",
+    "KECCTA.in — Freelance Website Development",
+    "Freelance website development using Next.js, React.js, JavaScript, HTML, CSS and technical SEO.",
   ],
   [
-    "Automated Multilingual Neural Translator",
-    "Neural translation workflow built to preserve meaning across languages when working with real-world text.",
+    "Nagaraseva.com — Municipal Digital Solutions",
+    "Municipal digital solutions for Doddaballapura, including citizen services, waste tracking and service request workflows.",
+  ],
+  [
+    "ScanSkip — Academic and Career Assistance",
+    "Ongoing academic and career assistance platform involving backend workflows, authentication, resource management and structured data storage.",
+  ],
+  [
+    "Smart Greenhouse System — AI + IoT",
+    "Smart irrigation, IoT sensor integration, automated environmental control and image processing for plant disease detection.",
+  ],
+  [
+    "Multilingual Voice Agent",
+    "Python-based application integrating speech-to-text, translation and text-to-speech for multilingual voice interaction.",
   ],
   [
     "Weather Pattern Prediction using SARIMA",
-    "Seasonal ARIMA time-series modelling that separates trend, seasonality and noise in historical weather data.",
-  ],
-  [
-    "Smart Dynamic Wireless EV Charging Robotic Vehicle",
-    "Robotics and power-electronics build exploring dynamic wireless charging for electric vehicles.",
+    "Time-series forecasting using SARIMA, historical weather data and seasonal trend analysis.",
   ],
 ];
 
@@ -158,20 +185,20 @@ section("Experience", cursor - 4);
 
 const experienceItems = [
   [
-    "Artsy Technologies — Software Development",
-    "Full stack product development within a professional engineering team, translating requirements into shipped, maintainable features.",
+    "Artsy Technologies — AI/ML Intern",
+    "Worked on Python-based AI/ML projects, contributing to model development, data handling and implementation. Guided and mentored student interns in technical concepts and project implementation.",
   ],
   [
-    "Cisco × AICTE — Virtual Internship",
-    "Networking fundamentals, structured troubleshooting and applied technical problem solving.",
+    "Cisco AICTE — Cybersecurity Intern",
+    "Virtual internship focused on cybersecurity fundamentals, threat analysis and security practices.",
   ],
   [
-    "Freelance Development",
-    "Design and delivery of responsive web applications for independent clients, from interface through deployment.",
+    "Tattvasphere Technologies LLP — Freelance Software Developer",
+    "Website development and improvements for KECCTA.in and Nagaraseva.com, including Next.js development, sitemap and canonical URL configuration, and technical SEO and Google Search indexing improvements.",
   ],
   [
-    "Technical Training",
-    "Hands-on instruction across programming, data and AI fundamentals, built around practical, project-based learning.",
+    "Anudip Foundation — Data and Business Analytics Using AI",
+    "Currently undergoing training in data cleaning, analysis, visualization, KPI tracking, business insights and AI-assisted analytics.",
   ],
 ];
 

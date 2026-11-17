@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { education } from "@/lib/content";
 
 const interests = [
   {
@@ -34,12 +35,6 @@ const pipeline = [
   { step: "02", label: "Model", detail: "Learning & validation" },
   { step: "03", label: "Product", detail: "Interface people use" },
 ];
-
-const education = {
-  degree: "B.E. Artificial Intelligence and Machine Learning",
-  university: "Visvesvaraya Technological University",
-  cgpa: "8.66/10",
-};
 
 export default function About() {
   return (

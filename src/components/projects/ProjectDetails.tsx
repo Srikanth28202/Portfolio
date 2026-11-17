@@ -99,24 +99,46 @@ export default function ProjectDetails({
 
             {/* GitHub / Live Demo buttons */}
             <div className="mt-4 flex flex-wrap gap-3">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
-              >
-                <GithubIcon className="size-4" />
-                GitHub
-              </a>
-              <a
-                href={project.liveDemo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
-              >
-                <Eye className="size-4" />
-                Live Demo
-              </a>
+              {project.github ? (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
+                >
+                  <GithubIcon className="size-4" />
+                  GitHub
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted opacity-60"
+                >
+                  <GithubIcon className="size-4" />
+                  Coming Soon
+                </button>
+              )}
+              {project.liveDemo ? (
+                <a
+                  href={project.liveDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
+                >
+                  <Eye className="size-4" />
+                  Live Demo
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted opacity-60"
+                >
+                  <Eye className="size-4" />
+                  Coming Soon
+                </button>
+              )}
             </div>
           </div>
         </div>

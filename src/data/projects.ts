@@ -3,7 +3,8 @@ export type ProjectVisualKind =
   | "translate"
   | "weather"
   | "ev"
-  | "fraud";
+  | "fraud"
+  | "web";
 
 export type Project = {
   id: string;
@@ -21,69 +22,87 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "agrisarathi",
+    id: "keccta-in",
     index: "01",
-    title: "AgriSarathi",
-    subtitle: "AI-Powered Crop Recommendation & Price Prediction",
+    title: "KECCTA.in",
+    subtitle: "Freelance Website Development",
     description:
-      "An intelligent agricultural platform combining machine learning, explainable AI and multilingual assistance to support agricultural decision-making.",
-    tags: ["Machine Learning", "Recommendation", "Agriculture", "SHAP", "NLP"],
+      "Freelance website development using Next.js, React.js, JavaScript, HTML, CSS and technical SEO.",
+    tags: ["Next.js", "React.js", "JavaScript", "HTML", "CSS", "Technical SEO"],
+    category: "Full Stack",
+    accent: "#287BFF",
+    visual: "web",
+    github: "",
+    liveDemo: "",
+  },
+  {
+    id: "nagaraseva-com",
+    index: "02",
+    title: "Nagaraseva.com",
+    subtitle: "Municipal Digital Solutions",
+    description:
+      "Municipal digital solutions for Doddaballapura, including citizen services, waste tracking and service request workflows.",
+    tags: ["Next.js", "React.js", "Municipal", "Service Workflows", "Waste Tracking"],
+    category: "Full Stack",
+    accent: "#7C5CFF",
+    visual: "web",
+    github: "",
+    liveDemo: "",
+  },
+  {
+    id: "scanskip",
+    index: "03",
+    title: "ScanSkip",
+    subtitle: "Academic and Career Assistance",
+    description:
+      "Ongoing academic and career assistance platform involving backend workflows, authentication, resource management and structured data storage.",
+    tags: ["Backend", "Authentication", "Resource Management", "Structured Data"],
+    category: "Full Stack",
+    accent: "#38BDF8",
+    visual: "web",
+    github: "",
+    liveDemo: "",
+  },
+  {
+    id: "smart-greenhouse",
+    index: "04",
+    title: "Smart Greenhouse System",
+    subtitle: "AI + IoT",
+    description:
+      "Smart irrigation, IoT sensor integration, automated environmental control and image processing for plant disease detection.",
+    tags: ["IoT", "Agriculture", "Image Processing", "Computer Vision"],
     category: "AI/ML",
     accent: "#34D399",
     visual: "agri",
-    github: "https://github.com/Srikanth28202/agrisarathi",
-    liveDemo: "https://agrisarathi-demo.vercel.app",
+    github: "",
+    liveDemo: "",
   },
   {
-    id: "translator",
-    index: "02",
-    title: "Automated Multilingual Neural Translator",
+    id: "multilingual-voice-agent",
+    index: "05",
+    title: "Multilingual Voice Agent",
+    subtitle: "Python Voice Interaction",
     description:
-      "A neural-network-based translation application designed to translate text between multiple languages.",
-    tags: ["NLP", "Neural Networks", "Python", "Seq2Seq"],
+      "Python-based application integrating speech-to-text, translation and text-to-speech for multilingual voice interaction.",
+    tags: ["Python", "NLP", "Speech-to-Text", "Translation", "Text-to-Speech"],
     category: "NLP",
-    accent: "#38BDF8",
+    accent: "#F472B6",
     visual: "translate",
-    github: "https://github.com/Srikanth28202/neural-translator",
-    liveDemo: "https://neural-translator-demo.vercel.app",
+    github: "",
+    liveDemo: "",
   },
   {
-    id: "weather",
-    index: "03",
+    id: "weather-pattern-prediction",
+    index: "06",
     title: "Weather Pattern Prediction",
+    subtitle: "Time-Series Forecasting with SARIMA",
     description:
-      "A time-series forecasting project using SARIMA to analyze historical weather patterns and predict future trends.",
+      "Seasonal ARIMA modelling applied to historical weather data to separate trend, seasonality and noise — surfacing patterns that support better forecasting decisions.",
     tags: ["SARIMA", "Time Series", "Python", "Pandas", "NumPy", "Matplotlib"],
     category: "Data Analytics",
     accent: "#287BFF",
     visual: "weather",
     github: "https://github.com/Srikanth28202/weather-prediction",
     liveDemo: "https://weather-prediction-demo.vercel.app",
-  },
-  {
-    id: "ev-charging",
-    index: "04",
-    title: "Smart Dynamic Wireless EV Charging Robotic Vehicle",
-    description:
-      "An engineering project exploring dynamic wireless EV charging through a robotic vehicle system.",
-    tags: ["Robotics", "Embedded Systems", "Wireless Charging", "IoT"],
-    category: "Robotics",
-    accent: "#8B5CF6",
-    visual: "ev",
-    github: "https://github.com/Srikanth28202/ev-charging-robot",
-    liveDemo: "https://ev-charging-demo.vercel.app",
-  },
-  {
-    id: "fake-job-detection",
-    index: "05",
-    title: "AI-Powered Fake Job Detection System",
-    description:
-      "An intelligent application that analyzes job postings and classifies potential fraudulent listings using NLP and machine learning.",
-    tags: ["Python", "FastAPI", "React.js", "MongoDB", "NLP", "Classification"],
-    category: "Full Stack",
-    accent: "#F472B6",
-    visual: "fraud",
-    github: "https://github.com/Srikanth28202/fake-job-detection",
-    liveDemo: "https://fake-job-detection-demo.vercel.app",
   },
 ];

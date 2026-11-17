@@ -3,8 +3,9 @@ export type ProjectVisualKind =
   | "translate"
   | "weather"
   | "ev"
-  | "fraud"
-  | "web";
+  | "fraud";
+
+export type ProjectGroup = "AI/ML" | "Data Analytics" | "Full Stack" | "Robotics";
 
 export type Project = {
   id: string;
@@ -13,96 +14,105 @@ export type Project = {
   subtitle?: string;
   description: string;
   tags: string[];
-  category: "AI/ML" | "Data Analytics" | "Full Stack" | "Robotics" | "NLP";
+  /** Full category label shown in the project details view. */
+  category: string;
+  /** Short filter bucket used by the category filter bar. */
+  group: ProjectGroup;
   accent: string;
   visual: ProjectVisualKind;
   github: string;
   liveDemo: string;
 };
 
+/**
+ * Central placeholder links for the GitHub / Live Demo buttons.
+ *
+ * Replace each value with the real repository / deployment URL later —
+ * every project currently points at a stable, resolvable page so no
+ * button 404s and no repository URL is invented.
+ */
+export const placeholderLinks = {
+  github: "https://github.com/Srikanth28202",
+  liveDemo: "https://example.com",
+} as const;
+
 export const projects: Project[] = [
   {
-    id: "keccta-in",
+    id: "agrisarathi",
     index: "01",
-    title: "KECCTA.in",
-    subtitle: "Freelance Website Development",
+    title: "AgriSarathi",
+    subtitle: "AI-Powered Crop Recommendation & Price Prediction",
     description:
-      "Freelance website development using Next.js, React.js, JavaScript, HTML, CSS and technical SEO.",
-    tags: ["Next.js", "React.js", "JavaScript", "HTML", "CSS", "Technical SEO"],
-    category: "Full Stack",
-    accent: "#287BFF",
-    visual: "web",
-    github: "",
-    liveDemo: "",
-  },
-  {
-    id: "nagaraseva-com",
-    index: "02",
-    title: "Nagaraseva.com",
-    subtitle: "Municipal Digital Solutions",
-    description:
-      "Municipal digital solutions for Doddaballapura, including citizen services, waste tracking and service request workflows.",
-    tags: ["Next.js", "React.js", "Municipal", "Service Workflows", "Waste Tracking"],
-    category: "Full Stack",
-    accent: "#7C5CFF",
-    visual: "web",
-    github: "",
-    liveDemo: "",
-  },
-  {
-    id: "scanskip",
-    index: "03",
-    title: "ScanSkip",
-    subtitle: "Academic and Career Assistance",
-    description:
-      "Ongoing academic and career assistance platform involving backend workflows, authentication, resource management and structured data storage.",
-    tags: ["Backend", "Authentication", "Resource Management", "Structured Data"],
-    category: "Full Stack",
-    accent: "#38BDF8",
-    visual: "web",
-    github: "",
-    liveDemo: "",
-  },
-  {
-    id: "smart-greenhouse",
-    index: "04",
-    title: "Smart Greenhouse System",
-    subtitle: "AI + IoT",
-    description:
-      "Smart irrigation, IoT sensor integration, automated environmental control and image processing for plant disease detection.",
-    tags: ["IoT", "Agriculture", "Image Processing", "Computer Vision"],
-    category: "AI/ML",
+      "An intelligent agricultural platform combining machine learning, explainable AI and multilingual assistance to support agricultural decision-making.",
+    tags: ["Python", "Machine Learning", "SHAP", "NLP"],
+    category: "AI / Machine Learning",
+    group: "AI/ML",
     accent: "#34D399",
     visual: "agri",
-    github: "",
-    liveDemo: "",
+    github: placeholderLinks.github,
+    liveDemo: placeholderLinks.liveDemo,
   },
   {
-    id: "multilingual-voice-agent",
-    index: "05",
-    title: "Multilingual Voice Agent",
-    subtitle: "Python Voice Interaction",
+    id: "translator",
+    index: "02",
+    title: "Automated Multilingual Neural Translator",
     description:
-      "Python-based application integrating speech-to-text, translation and text-to-speech for multilingual voice interaction.",
-    tags: ["Python", "NLP", "Speech-to-Text", "Translation", "Text-to-Speech"],
-    category: "NLP",
-    accent: "#F472B6",
+      "A neural-network-based translation application designed to translate text between multiple languages.",
+    tags: ["Python", "Neural Networks", "NLP"],
+    category: "AI / NLP",
+    group: "AI/ML",
+    accent: "#38BDF8",
     visual: "translate",
-    github: "",
-    liveDemo: "",
+    github: placeholderLinks.github,
+    liveDemo: placeholderLinks.liveDemo,
   },
   {
-    id: "weather-pattern-prediction",
-    index: "06",
+    id: "weather",
+    index: "03",
     title: "Weather Pattern Prediction",
-    subtitle: "Time-Series Forecasting with SARIMA",
     description:
-      "Seasonal ARIMA modelling applied to historical weather data to separate trend, seasonality and noise — surfacing patterns that support better forecasting decisions.",
-    tags: ["SARIMA", "Time Series", "Python", "Pandas", "NumPy", "Matplotlib"],
-    category: "Data Analytics",
+      "A time-series forecasting project using SARIMA to analyze historical weather patterns and predict future trends.",
+    tags: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Statsmodels",
+      "SARIMA",
+      "Matplotlib",
+    ],
+    category: "Data Analytics / Machine Learning",
+    group: "Data Analytics",
     accent: "#287BFF",
     visual: "weather",
-    github: "https://github.com/Srikanth28202/weather-prediction",
-    liveDemo: "https://weather-prediction-demo.vercel.app",
+    github: placeholderLinks.github,
+    liveDemo: placeholderLinks.liveDemo,
+  },
+  {
+    id: "ev-charging",
+    index: "04",
+    title: "Smart Dynamic Wireless EV Charging Robotic Vehicle",
+    description:
+      "An engineering project exploring dynamic wireless EV charging through a robotic vehicle system.",
+    tags: ["Embedded Systems", "Robotics", "Wireless Charging", "IoT"],
+    category: "Robotics / IoT",
+    group: "Robotics",
+    accent: "#8B5CF6",
+    visual: "ev",
+    github: placeholderLinks.github,
+    liveDemo: placeholderLinks.liveDemo,
+  },
+  {
+    id: "fake-job-detection",
+    index: "05",
+    title: "AI-Powered Fake Job Detection System",
+    description:
+      "An intelligent application that analyzes job postings and classifies potential fraudulent listings using NLP and machine learning.",
+    tags: ["Python", "FastAPI", "React.js", "MongoDB", "NLP"],
+    category: "AI / Full Stack",
+    group: "Full Stack",
+    accent: "#F472B6",
+    visual: "fraud",
+    github: placeholderLinks.github,
+    liveDemo: placeholderLinks.liveDemo,
   },
 ];

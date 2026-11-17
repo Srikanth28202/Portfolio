@@ -1,87 +1,104 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Mouse } from "lucide-react";
 import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectDetails from "@/components/projects/ProjectDetails";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { projects } from "@/data/projects";
+import { site } from "@/lib/content";
 
-const CATEGORIES = [
+const FILTERS = [
   { key: "all", label: "All" },
   { key: "AI/ML", label: "AI / ML" },
   { key: "Data Analytics", label: "Data Analytics" },
   { key: "Full Stack", label: "Full Stack" },
   { key: "Robotics", label: "Robotics" },
-  { key: "NLP", label: "NLP" },
 ] as const;
 
-type CategoryKey = (typeof CATEGORIES)[number]["key"];
+type FilterKey = (typeof FILTERS)[number]["key"];
 
-function CategoryFilter({
-  activeCategory,
+/** Asymmetric editorial spans on the 12-column desktop grid:
+ *  a wide + narrow pair, then the mirror, then a full-width finale. */
+const SPANS = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-5",
+  "lg:col-span-7",
+  "lg:col-span-12",
+];
+
+function FilterBar({
+  active,
   onSelect,
   counts,
 }: {
-  activeCategory: CategoryKey;
-  onSelect: (category: CategoryKey) => void;
-  counts: Record<string, number>;
+  active: FilterKey;
+  onSelect: (filter: FilterKey) => void;
+  counts: Record<FilterKey, number>;
 }) {
   return (
-    <div className="flex flex-wrap gap-2 mb-8 pt-2 border-y border-white/[0.06]">
-      {CATEGORIES.map((cat) => (
-        <button
-          key={cat.key}
-          type="button"
-          onClick={() => onSelect(cat.key)}
-          className={`rounded-full px-3.5 py-1.5 text-[10px] font-medium tracking-[0.18em] text-dim transition-colors duration-300 ${
-            activeCategory === cat.key
-              ? "bg-[var(--color-accent)] text-white"
-              : "bg-white/[0.03] text-foreground hover:bg-[var(--color-accent)]/25 hover:text-[var(--color-foreground)]"
-          }`}
-          aria-pressed={activeCategory === cat.key}
-          aria-label={`Filter by ${cat.label} projects`}
-        >
-          {cat.label}
-          {counts[cat.key] > 0 && (
-            <span className="ml-1 text-[9px] font-semibold bg-[var(--color-accent)]/30 rounded-full px-1.5 py-0.5">
-              {counts[cat.key]}
-            </span>
-          )}
-        </button>
-      ))}
+    <div
+      role="group"
+      aria-label="Filter projects by category"
+      className="flex flex-wrap items-center gap-2 border-y border-white/[0.06] py-3"
+    >
+      {FILTERS.map((filter) => {
+        const isActive = active === filter.key;
+        return (
+          <button
+            key={filter.key}
+            type="button"
+            onClick={() => onSelect(filter.key)}
+            aria-pressed={isActive}
+            className={`relative inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-display text-[10px] font-semibold tracking-[0.18em] uppercase transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-soft)] ${
+              isActive ? "text-white" : "text-dim hover:text-foreground"
+            }`}
+          >
+            {isActive ? (
+              <motion.span
+                layoutId="project-filter-pill"
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-[var(--color-cta)] shadow-[0_0_18px_-4px_rgba(40,123,255,0.85)]"
+                transition={{ type: "spring", stiffness: 420, damping: 34 }}
+              />
+            ) : null}
+            <span className="relative">{filter.label}</span>
+            <span className="relative text-[9px]">{counts[filter.key]}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
+  const [activeFilter, setActiveFilter] = useState<FilterKey>("all");
   const [openDetails, setOpenDetails] = useState<string | null>(null);
 
-  const filteredProjects = useMemo(() => {
-    if (activeCategory === "all") return projects;
-    return projects.filter((project) => project.category === activeCategory);
-  }, [activeCategory]);
+  const filteredProjects = useMemo(
+    () =>
+      activeFilter === "all"
+        ? projects
+        : projects.filter((project) => project.group === activeFilter),
+    [activeFilter],
+  );
 
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: projects.length };
-    for (const category of CATEGORIES) {
-      if (category.key === "all") continue;
-      counts[category.key] = projects.filter(
-        (project) => project.category === category.key,
-      ).length;
+  const counts = useMemo(() => {
+    const result: Record<FilterKey, number> = {
+      all: projects.length,
+      "AI/ML": 0,
+      "Data Analytics": 0,
+      "Full Stack": 0,
+      Robotics: 0,
+    };
+    for (const project of projects) {
+      result[project.group] += 1;
     }
-    return counts;
+    return result;
   }, []);
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" as const },
-    },
-  };
 
   return (
     <section
@@ -90,55 +107,81 @@ export default function Projects() {
       className="relative border-t border-white/[0.05] py-24 sm:py-28 lg:py-36"
     >
       <div className="shell">
-        <div className="flex flex-col lg:flex-row gap-6 lg:items-end lg:justify-between">
-          {/* Section header */}
-          <div>
-            <motion.h2
-              variants={cardVariants}
-              initial="hidden"
-              animate="show"
-              className="font-display text-[clamp(2.1rem,4.4vw,3.6rem)] leading-[1.03] font-medium tracking-[-0.035em] text-balance text-foreground"
-            >
-              <span className="serif-accent">Selected</span> Work
-            </motion.h2>
-
-            <motion.p
-              variants={cardVariants}
-              initial="hidden"
-              animate="show"
-              className="mt-3 max-w-xs text-[13.5px] leading-relaxed text-muted lg:text-right"
-            >
-              Six intelligent builds spanning web platforms, municipal systems, AI + IoT, language technology and forecasting.
-            </motion.p>
-          </div>
-
-          {/* Category filters */}
-          <CategoryFilter
-            activeCategory={activeCategory}
-            onSelect={setActiveCategory}
-            counts={categoryCounts}
-          />
-        </div>
-
-        {/* Project grid */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              onOpen={() => setOpenDetails(project.id)}
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <Reveal>
+            <SectionHeading
+              index="03"
+              kicker="Selected Work"
+              headingId="projects-heading"
+              title={
+                <>
+                  Projects that make data{" "}
+                  <span className="serif-accent">useful.</span>
+                </>
+              }
             />
-          ))}
+          </Reveal>
+          <Reveal delay={0.12}>
+            <FilterBar
+              active={activeFilter}
+              onSelect={setActiveFilter}
+              counts={counts}
+            />
+          </Reveal>
         </div>
 
-        {/* Project details modal */}
-        {openDetails ? (
-          <ProjectDetails
-            projectId={openDetails}
-            onClose={() => setOpenDetails(null)}
-          />
-        ) : null}
+        <Reveal delay={0.06}>
+          <p className="mt-6 max-w-2xl text-[13.5px] leading-relaxed text-muted">
+            Five intelligent builds spanning recommendation systems, language
+            technology, time-series forecasting, embedded systems and
+            AI-powered detection.
+          </p>
+        </Reveal>
+
+        <p className="sr-only" role="status" aria-live="polite">
+          {filteredProjects.length}{" "}
+          {filteredProjects.length === 1 ? "project" : "projects"} shown.
+        </p>
+
+        {/* Asymmetric project grid */}
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-12 lg:gap-6">
+          <AnimatePresence>
+            {filteredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                span={SPANS[index] ?? "lg:col-span-6"}
+                onOpen={() => setOpenDetails(project.id)}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
+
+        <Reveal delay={0.1}>
+          <p className="mt-8 text-[12px] text-dim">
+            Source code and deeper technical write-ups are available on request
+            —{" "}
+            <a
+              href={`mailto:${site.email}`}
+              className="text-muted underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-accent/60"
+            >
+              get in touch
+            </a>
+            .
+          </p>
+        </Reveal>
+
+        {/* Project details dialog */}
+        <AnimatePresence>
+          {openDetails ? (
+            <ProjectDetails
+              key={openDetails}
+              projectId={openDetails}
+              onClose={() => setOpenDetails(null)}
+            />
+          ) : null}
+        </AnimatePresence>
       </div>
 
       {/* Floating CTA */}
@@ -146,7 +189,7 @@ export default function Projects() {
         <div className="shell">
           <a
             href="#contact"
-            className="group pointer-events-auto inline-flex items-center gap-3 text-[9.5px] font-semibold tracking-[0.3em] text-dim uppercase transition-colors hover:text-muted"
+            className="group pointer-events-auto inline-flex items-center gap-3 font-display text-[9.5px] font-semibold tracking-[0.3em] text-dim uppercase transition-colors hover:text-muted"
           >
             <span className="grid size-8 place-items-center rounded-full border border-white/10 transition-colors group-hover:border-accent/40">
               <Mouse className="size-3.5 animate-bounce" />

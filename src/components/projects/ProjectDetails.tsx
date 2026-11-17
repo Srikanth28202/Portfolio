@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Eye, X } from "lucide-react";
+import { ArrowUpRight, Eye, X } from "lucide-react";
 import { GithubIcon } from "@/components/ui/BrandIcons";
 import ProjectVisual from "@/components/visuals/ProjectVisual";
 import { projects } from "@/data/projects";
@@ -17,14 +17,33 @@ export default function ProjectDetails({
   onClose,
 }: ProjectDetailsProps) {
   const project = projects.find((p) => p.id === projectId);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const previousFocus = useRef<HTMLElement | null>(null);
 
+  // Escape closes, background scroll locks, focus moves into the
+  // dialog and is restored to the triggering card on close.
   useEffect(() => {
     if (!project) return;
+
+    previousFocus.current = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
     };
+    const { overflow, paddingRight } = document.body.style;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
+      previousFocus.current?.focus();
+    };
   }, [project, onClose]);
 
   if (!project) return null;
@@ -33,127 +52,139 @@ export default function ProjectDetails({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed inset-0 z-50 overflow-y-auto bg-[var(--color-panel)] pt-16 sm:pt-24 px-4 md:px-6 lg:px-8"
+      exit={{ opacity: 0, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-50 overflow-y-auto bg-[var(--color-panel)] px-4 pt-20 pb-12 sm:px-6 sm:pt-24 md:px-8"
       onClick={onClose}
+      role="presentation"
     >
-      <div
-        className="max-w-4xl mx-auto w-full bg-white/[0.02] border-t border-white/[0.08] rounded-2xl p-6 sm:p-8"
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-details-title"
+        className="mx-auto w-full max-w-4xl rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-center justify-between gap-3 mb-6">
-          <span className="text-[13px] font-medium text-foreground">
-            {project.title}
+        {/* Header */}
+        <div className="mb-6 flex items-center justify-between gap-4 border-b border-white/[0.06] pb-5">
+          <span className="flex items-center gap-3 font-display text-[9.5px] font-medium tracking-[0.24em] text-white/55 uppercase">
+            <span
+              aria-hidden="true"
+              className="size-1.5 rounded-full"
+              style={{
+                backgroundColor: project.accent,
+                boxShadow: `0 0 12px 1px ${project.accent}`,
+              }}
+            />
+            Project {project.index} / 05
           </span>
           <button
+            ref={closeRef}
+            type="button"
             onClick={onClose}
-            className="p-2 rounded-lg hover:bg-white/[0.02] transition-colors"
+            className="rounded-lg p-2 text-muted transition-colors hover:bg-white/[0.04] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-soft)]"
             aria-label="Close project details"
           >
             <X className="size-5" />
           </button>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Image/Visual area */}
-          <div>
-            <div className="relative h-[260] sm:h-[320] rounded-2xl overflow-hidden bg-[var(--color-panel)]">
-              <ProjectVisual project={project} className="absolute inset-0" />
-            </div>
+        <div className="grid gap-8 md:grid-cols-2">
+          {/* Visual */}
+          <div className="relative h-[260px] overflow-hidden rounded-2xl border border-white/[0.06] bg-[var(--color-ink)] sm:h-[320px]">
+            <ProjectVisual project={project} />
           </div>
 
-          {/* Project info */}
+          {/* Info */}
           <div>
-            <h2 className="text-[clamp(1.8rem,5vw,2.5rem)] font-medium tracking-[-0.04em] text-balance mb-3">
+            <h2
+              id="project-details-title"
+              className="font-display text-[clamp(1.6rem,3.5vw,2.25rem)] font-medium tracking-[-0.035em] text-balance text-foreground"
+            >
               {project.title}
             </h2>
 
             {project.subtitle ? (
-              <p className="text-[13px] font-medium tracking-wide text-foreground/80 mb-4">
+              <p className="mt-2 text-[13px] font-medium leading-snug text-accent-soft">
                 {project.subtitle}
               </p>
             ) : null}
 
-            <p className="text-[13px] leading-relaxed text-muted mb-4">{project.description}</p>
+            <p className="mt-4 text-[13.5px] leading-relaxed text-muted">
+              {project.description}
+            </p>
 
-            {/* Category badge */}
-            <div className="mt-3 pt-3 border-t border-white/[0.05]">
-              <span className="text-[10px] font-medium tracking-[0.2em] text-dim uppercase">
+            {/* Category */}
+            <div className="mt-5 flex items-center gap-3 border-t border-white/[0.06] pt-5">
+              <span className="font-display text-[9.5px] font-semibold tracking-[0.24em] text-dim uppercase">
                 Category
               </span>
-              <span className="ml-2 rounded-full bg-[var(--color-accent)]/20 px-2.5 py-1.5 text-[11px] font-medium text-[var(--color-accent)]">
+              <span
+                className="pill-blur rounded-full border px-2.5 py-1 font-display text-[9.5px] font-semibold tracking-[0.18em] uppercase"
+                style={{
+                  color: project.accent,
+                  borderColor: `${project.accent}59`,
+                  background: `${project.accent}1a`,
+                }}
+              >
                 {project.category}
               </span>
             </div>
 
             {/* Tech stack */}
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              {project.tags.slice(0, 6).map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-white/[0.03] px-2.5 py-1.5 text-[10px] font-medium text-dim transition-colors hover:text-[var(--color-foreground)]"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="mt-5">
+              <span className="font-display text-[9.5px] font-semibold tracking-[0.24em] text-dim uppercase">
+                Technologies
+              </span>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="chip">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            {/* GitHub / Live Demo buttons */}
-            <div className="mt-4 flex flex-wrap gap-3">
-              {project.github ? (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
-                >
-                  <GithubIcon className="size-4" />
-                  GitHub
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted opacity-60"
-                >
-                  <GithubIcon className="size-4" />
-                  Coming Soon
-                </button>
-              )}
-              {project.liveDemo ? (
-                <a
-                  href={project.liveDemo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted transition-colors hover:border-accent/40 hover:text-[var(--color-foreground)]"
-                >
-                  <Eye className="size-4" />
-                  Live Demo
-                </a>
-              ) : (
-                <button
-                  type="button"
-                  disabled
-                  className="flex items-center gap-2 rounded-xl border border-white/[0.08] px-4 py-2.5 text-[12px] font-medium text-muted opacity-60"
-                >
-                  <Eye className="size-4" />
-                  Coming Soon
-                </button>
-              )}
+            {/* Actions */}
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-2.5 font-display text-[11px] font-semibold tracking-[0.14em] text-foreground uppercase transition-colors duration-300 hover:border-accent/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-soft)]"
+              >
+                <GithubIcon className="size-4" />
+                GitHub
+                <ArrowUpRight className="size-3 text-accent-soft" aria-hidden="true" />
+              </a>
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-2.5 font-display text-[11px] font-semibold tracking-[0.14em] text-foreground uppercase transition-colors duration-300 hover:border-accent/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-soft)]"
+              >
+                <Eye className="size-4" />
+                Live Demo
+                <ArrowUpRight className="size-3 text-accent-soft" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Close button */}
-        <div className="mt-8 pt-8 border-t border-white/[0.05] flex justify-end">
+        {/* Footer close */}
+        <div className="mt-8 flex justify-end border-t border-white/[0.06] pt-5">
           <button
+            type="button"
             onClick={onClose}
-            className="rounded-lg px-4 py-2 text-[12px] font-medium text-dim transition-colors hover:bg-white/[0.02]"
-            aria-label="Close project details"
+            className="rounded-lg px-4 py-2 font-display text-[11px] font-semibold tracking-[0.18em] text-dim uppercase transition-colors hover:bg-white/[0.04] hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-soft)]"
           >
-            <X className="size-4" /> Close
+            Close
           </button>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
